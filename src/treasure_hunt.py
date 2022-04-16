@@ -77,12 +77,13 @@ class TreasureHunt:
         totalChestKey = totalChest['totalChestKey']
 
         chestValues = self.config['chests']['values']
+        divide = chestValues["divide"]
         value01 = totalChest01 * chestValues["chest_01"]
         value02 = totalChest02 * chestValues["chest_02"]
         value03 = totalChest03 * chestValues["chest_03"]
         value04 = totalChest04 * chestValues["chest_04"]
 
-        total = value01 + value02 + value03 + value04
+        total = (value01 + value02 + value03 + value04) / divide
 
         report = f"""
 Possible quantity chest per type:
@@ -93,7 +94,7 @@ Possible quantity chest per type:
 🏛️ - {totalChestJail}
 🗝️ - {totalChestKey}
 
-🤑 Possible amount: {total:.3f} BCoin
+🤑 Possible amount: {total:.3f} SEN
 """
         reportWithoutEmoji = f"""
 Possible quantity chest per type:
@@ -104,7 +105,7 @@ Blue - {totalChest04}
 Jail - {totalChestJail}
 Key - {totalChestKey}
 
-Possible amount: {total:.3f} BCoin
+Possible amount: {total:.3f} SEN
 """
         try:
             self.log.console(report, services=True)

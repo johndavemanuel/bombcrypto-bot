@@ -8,8 +8,6 @@ app:
   captcha: false
   speed: "fast"
   authenticate: false
-  clean_page: false
-  devtools_await_seconds: 2
   multi_account:
     enable: false
     window_title: "bombcrypto"
@@ -21,6 +19,7 @@ time_intervals:
 
 chests:
   values:
+    divide: 2
     chest_01: 0.01425
     chest_02: 0.03250
     chest_03: 0.16250

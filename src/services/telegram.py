@@ -11,7 +11,7 @@ Commands = [
     BotCommand("print", "Send printscreen"),
     BotCommand("map", "Send a printscreen of the map (disabled in multi account)"),
     BotCommand(
-        "bcoin", "Send a printscreen of your BCOIN (disabled in multi account temporarily)"),
+        "tokens", "Send a printscreen of your TOKENS (disabled in multi account temporarily)"),
     BotCommand(
         "workall", "Send all heroes to work (disabled in multi account temporarily)"),
     BotCommand(
@@ -42,7 +42,7 @@ class Telegram:
 
     def importLibs(self):
         from src.actions import Actions
-        from src.bcoins import Bcoins
+        from src.tokens import Tokens
         from src.config import Config
         from src.desktop import Desktop
         from src.heroes import Heroes
@@ -51,7 +51,7 @@ class Telegram:
         from src.recognition import Recognition
         from src.treasure_hunt import TreasureHunt
         self.actions = Actions()
-        self.bcoins = Bcoins()
+        self.tokens = Tokens()
         self.config = Config().read()
         self.desktop = Desktop()
         self.heroes = Heroes()
@@ -99,9 +99,9 @@ class Telegram:
             if userHasPermission(self, update):
                 self.commandSendMap(update)
 
-        def sendBcoin(update: Update, context: CallbackContext) -> None:
+        def sendTokens(update: Update, context: CallbackContext) -> None:
             if userHasPermission(self, update):
-                self.commandSendBcoin(update)
+                self.commandSendToken(update)
 
         def sendDonation(update: Update, context: CallbackContext) -> None:
             if userHasPermission(self, update):
@@ -119,7 +119,7 @@ class Telegram:
             ['chat_id', sendChatId],
             ['print', sendPrint],
             ['map', sendMap],
-            ['bcoin', sendBcoin],
+            ['tokens', sendTokens],
             ['workall', sendAllHeroesToWork],
             ['restall', sendAllHeroesToRest],
             ['donation', sendDonation],
@@ -161,7 +161,7 @@ class Telegram:
                          services=False, emoji='📄')
         return True
 
-    def sendBCoinReport(self, callTreasureHuntMethods=True):
+    def sendTokenReport(self, callTreasureHuntMethods=True):
         self.importLibs()
         if self.enableTelegram == False:
             return
@@ -169,17 +169,17 @@ class Telegram:
             return
 
         if callTreasureHuntMethods == True:
-            self.bcoins.openYourChestWindow()
+            self.tokens.openYourChestWindow()
 
         try:
-            image = self.bcoins.BCOIN_BOX_IMAGE
+            image = self.tokens.TOKENS_BOX_IMAGE
             for chat_id in self.telegramConfig['chat_ids']:
                 self.TelegramBot.send_photo(
                     chat_id=chat_id, photo=open(image, 'rb'))
         except:
             self.log.console('Telegram offline', emoji='😿')
 
-        self.log.console('BCoin image sent to Telegram',
+        self.log.console('Tokens image sent to Telegram',
                          services=False, emoji='📄')
         return True
 
@@ -241,10 +241,10 @@ class Telegram:
             update.message.reply_text(
                 '⚠️ Command disabled, because of the Multi Accounts is enabled.')
 
-    def commandSendBcoin(self, update):
-        update.message.reply_text('🔃 Proccessing image bcoin...')
+    def commandSendToken(self, update):
+        update.message.reply_text('🔃 Proccessing image tokens...')
         if self.config['app']['multi_account']['enable'] is not True:
-            if self.sendBCoinReport() is None:
+            if self.sendTokenReport() is None:
                 update.message.reply_text('😿 An error has occurred')
         else:
             update.message.reply_text(

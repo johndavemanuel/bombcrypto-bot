@@ -20,6 +20,7 @@ I am not responsible for any penalties incurred by those who use the bot, use it
 
   * [About](#about)
   * [Donation](#donation)
+  * [Clean Page - Remove all ads](#clean-page)
   * [Robot - Preview](#robot-preview)
   * [Installation](#installation)
     * [Terminal commands](#commands)
@@ -62,8 +63,65 @@ Features:
 
 ## 🎁 <a id="donation"></a>Donation
 BCOIN: 0x4847C29561B6682154E25c334E12d156e19F613a  
+SEN: 0x4847C29561B6682154E25c334E12d156e19F613a  
 PIX: 08912d17-47a6-411e-b7ec-ef793203f836  
 
+## 🖌️ <a id="clean-page"></a>Clean Page - Remove all ads
+### Stylebot https://stylebot.dev/
+```css
+html, body {
+  background-color: #000000;
+  width: 100%;
+  height: 100%;
+}
+
+div {
+  height: 100%;
+  width: 100%;
+}
+
+#root > div > img,
+#root > div > div > div:nth-child(1),
+#root > div > div > div:nth-child(3),
+#root > div > div > div:nth-child(2) > div:nth-child(1),
+#root > div > div > div:nth-child(2) > div:nth-child(3) {
+  display: none;
+}
+
+#root > div > div > div:nth-child(2) > div:nth-child(2) > div {
+  background: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#root > div > div > div:nth-child(2) > div:nth-child(2) > div > iframe {
+  width: 965px;
+  height: 645px;
+}
+``` 
+### Tampemonkey https://www.tampermonkey.net/
+```js
+// ==UserScript==
+// @name         Bombcrypto Styles
+// @namespace    http://tampermonkey.net/
+// @version      0.1
+// @description  try to take over the world!
+// @author       Newerton
+// @match        https://app.bombcrypto.io/
+// @icon         https://www.google.com/s2/favicons?domain=bombcrypto.io
+// @grant        none
+// @require http://code.jquery.com/jquery-latest.js
+// ==/UserScript==
+
+const $ = window.jQuery;
+$('html, body').css({'background-color': '#150F1B', 'height': '100%'});
+const iframe = $('iframe[title^="Bomb"]').attr('scrolling', 'no').clone();
+$('div[id="root"] > div').remove();
+$('div[id="root"]')
+    .css({'width': '100%', 'height': '100%', 'display': 'flex', 'justify-content': 'center', 'align-items': 'center'});
+$('div[id="root"]').append(iframe);
+```
 ## 🤖 <a id="robot-preview"></a>Robot - Preview
 ![Screenshot - Preview](https://raw.githubusercontent.com/newerton/bombcrypto-bot/main/images/readme/bot_working.png)
 
@@ -169,7 +227,7 @@ Python 3.8.10
 | heroes_full_bar | decimal | Hero's full energy bar confidence value |
 | heroes_send_all | decimal | Trust value of the send all heroes to work |
 | heroes_rest_all | decimal | Trust value of the send all heroes to rest |
-| chest | decimal | Confidence value of the chests to calculate the total BCOINS of the map |
+| chest | decimal | Confidence value of the chests to calculate the total tokens of the map |
 | jail | decimal | Confidence value of the chests to calculate the total jail of the map |
 | auth_input | decimal | Confidence value of the input of login |
 | heroes.common | decimal | Confidence value of the rarity tag - common |
@@ -286,4 +344,5 @@ A threshold of 0.99 or 1 is too high, it won't find the image it's looking for, 
 ## 👍 Did you like it? :)
 
 ### BCOIN: 0x4847C29561B6682154E25c334E12d156e19F613a  
+### SEN: 0x4847C29561B6682154E25c334E12d156e19F613a  
 ### PIX: 08912d17-47a6-411e-b7ec-ef793203f836
