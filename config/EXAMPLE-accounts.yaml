@@ -1,4 +1,5 @@
-# Rarity for House - Raridade para Casa
+# Rarity for House
 # rarity: ["common", "rare", "super_rare", "epic", "legend", "super_legend"]
 
-1: { username: "", password: "", house: false, rarity: [] }
+1: { username: "username_here_1", password: "password_here_1", house: false, rarity: [] }
+1: { username: "username_here_2", password: "password_here_2", house: false, rarity: [] }

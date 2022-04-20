@@ -1,20 +1,20 @@
 app:
   theme: "default"
   verify_version: true
-  emoji: false
-  terminal_colorful: false
+  emoji: true
+  terminal_colorful: true
   run_time_app: 1
   monitor_to_use: 1
   captcha: false
   speed: "fast"
-  authenticate: false
+  authenticate: true
   multi_account:
     enable: false
     window_title: "bombcrypto"
     window_fullscreen: false
 
 time_intervals:
-  send_heroes_for_work: [30, 35]
+  send_heroes_for_work: [60, 35]
   refresh_heroes_positions: [3, 4]
 
 chests:
@@ -48,7 +48,7 @@ threshold:
     super_legend: 0.8
 
 heroes:
-  mode: "green"
+  mode: "all"
   list:
     scroll_attempts: 3
 
@@ -62,7 +62,7 @@ metamask:
   password: ""
 
 services:
-  telegram: false
+  telegram: true
 
 log:
   save_to_file: false
