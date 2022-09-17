@@ -66,7 +66,7 @@ class Auth:
             if password_icon_position is not False:
                 password = self.accounts[account_active]['password']
                 x, y, _, _ = password_icon_position[0]
-                self.actions.move((int(x+100), int(y+10)), 1)
+                self.actions.move((int(x+100), int(y+20)), 1)
                 if(self.actions.click()):
                     self.actions.sleep(1, 1, forceTime=True)
                     pyautogui.hotkey('del')
@@ -78,6 +78,7 @@ class Auth:
 
                 self.actions.sleep(1, 3, forceTime=True)
                 self.application.loggingWithUsernameAndPasswordNotAllowTransactions()
+                self.application.advertisingBanner()
 
                 self.recognition.waitForImage(treasure_hunt_banner, timeout=30)
                 self.errors.verify()
